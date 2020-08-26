@@ -10,7 +10,7 @@ func TestNewController(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{5}, y: Grid{5}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	assert.NotNil(cont)
 }
@@ -19,7 +19,7 @@ func TestController_Operate(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{1}, y: Grid{3}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	//testing the rotate left and right functions
 	var tests = []struct {
@@ -46,7 +46,7 @@ func TestController_RotateRight(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{1}, y: Grid{3}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	//testing the rotate left and right functions
 	var tests = []struct {
@@ -68,7 +68,7 @@ func TestController_RotateLeft(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{1}, y: Grid{3}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	//testing the rotate left and right functions
 	var tests = []struct {
@@ -90,7 +90,7 @@ func TestController_Forward(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{3}, y: Grid{3}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	// testing rover near top right corner of a 5,5 grid
 	var testsY = []struct {
@@ -125,7 +125,7 @@ func TestController_Forward_Rotate(t *testing.T) {
 	assert := assert.New(t)
 	r := Rover{x: Grid{3}, y: Grid{3}, direction: North}
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
-	cont := NewController(r, p)
+	cont := NewController(r, &p)
 
 	//Moving different directions - currently north 3,3
 	var testsRotate = []struct {

@@ -21,9 +21,9 @@ type Controller struct {
 }
 
 // NewController returns the compass.
-func NewController(r Rover, p Plateau) *Controller {
+func NewController(r Rover, p *Plateau) *Controller {
 	return &Controller{
-		plateau: &p,
+		plateau: p,
 		rover:   &r,
 	}
 }
