@@ -14,7 +14,7 @@ This is a Golang (Go) implementation to operate a squad of rovers on a plateau o
 ## Technologies
 These are the technologies used to create this project:
 * Go 1.14.7
-* [Testify]: http://github.com/stretchr/testify  
+* [Testify](http://github.com/stretchr/testify)  
 
 ## Setup
 To run this project, build it locally using Go:
