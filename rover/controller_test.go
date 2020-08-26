@@ -39,7 +39,7 @@ func TestController_Operate(t *testing.T) {
 	//testing the move function with y+1 due to being North facing
 	curY := cont.rover.y
 	cont.Operate(Move)
-	assert.Equal(cont.rover.y.Cord, (curY.Cord + 1))
+	assert.Equal(cont.rover.y.Coord, (curY.Coord + 1))
 }
 
 func TestController_RotateRight(t *testing.T) {
@@ -103,7 +103,7 @@ func TestController_Forward(t *testing.T) {
 
 	for _, test := range testsY {
 		cont.Forward()
-		assert.Equal(test.expected, cont.rover.y.Cord)
+		assert.Equal(test.expected, cont.rover.y.Coord)
 	}
 
 	cont.RotateRight()
@@ -117,7 +117,7 @@ func TestController_Forward(t *testing.T) {
 
 	for _, test := range testsX {
 		cont.Forward()
-		assert.Equal(test.expected, cont.rover.x.Cord)
+		assert.Equal(test.expected, cont.rover.x.Coord)
 	}
 }
 
@@ -143,9 +143,9 @@ func TestController_Forward_Rotate(t *testing.T) {
 		test.rotate()
 		cont.Forward()
 
-		actual := cont.rover.y.Cord
+		actual := cont.rover.y.Coord
 		if test.input == "x" {
-			actual = cont.rover.x.Cord
+			actual = cont.rover.x.Coord
 		}
 
 		assert.Equal(test.expected, actual)

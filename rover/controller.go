@@ -1,8 +1,10 @@
 package rover
 
+import "fmt"
+
 const moveSpace = 1
 
-// Command are the commands sent to the rover to move.
+// Command is a string type used for the Operate function (movement of rover).
 type Command string
 
 // LeftSpin command
@@ -14,13 +16,13 @@ const RightSpin Command = "R"
 // Move command
 const Move Command = "M"
 
-// Controller type
+// Controller joins the rover and plateau together for operation of Mars missions.
 type Controller struct {
 	rover   *Rover
 	plateau *Plateau
 }
 
-// NewController returns the compass.
+// NewController returns the Controller.
 func NewController(r Rover, p *Plateau) *Controller {
 	return &Controller{
 		plateau: p,
@@ -28,7 +30,7 @@ func NewController(r Rover, p *Plateau) *Controller {
 	}
 }
 
-// Operate decides the action for the command
+// Operate decides which action to take from the Command.
 func (c *Controller) Operate(com Command) error {
 	switch com {
 	case LeftSpin:
@@ -42,7 +44,7 @@ func (c *Controller) Operate(com Command) error {
 	return nil
 }
 
-// RotateRight returns the next position for R
+// RotateRight returns the next position for R.
 func (c *Controller) RotateRight() {
 	switch c.rover.direction {
 	case North:
@@ -56,7 +58,7 @@ func (c *Controller) RotateRight() {
 	}
 }
 
-// RotateLeft returns the next position for L
+// RotateLeft returns the next position for L.
 func (c *Controller) RotateLeft() {
 	switch c.rover.direction {
 	case North:
@@ -70,16 +72,16 @@ func (c *Controller) RotateLeft() {
 	}
 }
 
-// Forward returns the cords for the next move for M.
+// Forward returns the next position for M.
 func (c *Controller) Forward() {
 	maxX := c.plateau.X.GetMax()
 	minX := c.plateau.X.GetMin()
 	maxY := c.plateau.Y.GetMax()
 	minY := c.plateau.Y.GetMin()
-	y := c.rover.y.Cord
-	x := c.rover.x.Cord
+	y := c.rover.y.Coord
+	x := c.rover.x.Coord
 
-	// checkPositive checks the current plus next cord agasint the maximum cord
+	// checkPositive checks the current position plus next movement against the maximum Coord
 	checkPositive := func(current, max int) bool {
 		if (current + moveSpace) > max {
 			return false
@@ -87,7 +89,7 @@ func (c *Controller) Forward() {
 		return true
 	}
 
-	// checkNegative checks the current plus next cord agasint the maximum cord
+	// checkNegative checks the current plus next Coord agasint the maximum Coord
 	checkNegative := func(current, min int) bool {
 		if (current - moveSpace) < min {
 			return false
@@ -115,4 +117,12 @@ func (c *Controller) Forward() {
 			c.rover.SetX(Grid{x - moveSpace})
 		}
 	}
+}
+
+func (c *Controller) String() string {
+	return fmt.Sprintf("%d %d %s",
+		c.rover.x.Coord,
+		c.rover.y.Coord,
+		c.rover.direction,
+	)
 }

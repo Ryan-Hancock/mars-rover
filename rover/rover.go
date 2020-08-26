@@ -20,24 +20,24 @@ func SetupMission(xBoundary, yBoundary int) *Squad {
 }
 
 // AddRover takes the starting locations of the rover in x,y and the facing direction.
-func (s *Squad) AddRover(xLocation, yLocation Grid, direction Direction) error {
+func (s *Squad) AddRover(xLocation, yLocation Grid, direction Direction) (*Controller, error) {
 	if !GetCompass().Directions[direction] {
-		return fmt.Errorf("not a support direction %s", direction)
+		return nil, fmt.Errorf("not a support direction %s", direction)
 	}
 
-	if xLocation.Cord > s.Plataue.X.GetMax() || xLocation.Cord < s.Plataue.X.GetMin() {
-		return fmt.Errorf("rover is outside of plataue on the X asis, %d", xLocation.Cord)
+	if xLocation.Coord > s.Plataue.X.GetMax() || xLocation.Coord < s.Plataue.X.GetMin() {
+		return nil, fmt.Errorf("rover is outside of plataue on the X asis, %d", xLocation.Coord)
 	}
 
-	if yLocation.Cord > s.Plataue.Y.GetMax() || yLocation.Cord < s.Plataue.Y.GetMin() {
-		return fmt.Errorf("rover is outside of plataue on the Y asis, %d", xLocation.Cord)
+	if yLocation.Coord > s.Plataue.Y.GetMax() || yLocation.Coord < s.Plataue.Y.GetMin() {
+		return nil, fmt.Errorf("rover is outside of plataue on the Y asis, %d", xLocation.Coord)
 	}
 
 	r := SetupRover(xLocation, yLocation, direction)
 	cont := NewController(r, &s.Plataue)
 
 	s.Controllers = append(s.Controllers, cont)
-	return nil
+	return cont, nil
 }
 
 // Rover holds the current postions and direction of the mars rover.

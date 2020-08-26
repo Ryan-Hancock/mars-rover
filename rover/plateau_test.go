@@ -9,8 +9,8 @@ import (
 func TestNewPlateau(t *testing.T) {
 	assert := assert.New(t)
 
-	topRightX := Grid{Cord: 5}
-	topRightY := Grid{Cord: 5}
+	topRightX := Grid{Coord: 5}
+	topRightY := Grid{Coord: 5}
 
 	plat := NewPlateau(topRightX, topRightY)
 	assert.NotNil(plat)
@@ -21,18 +21,18 @@ func TestNewPlateau(t *testing.T) {
 func TestGrid_GetMax(t *testing.T) {
 	assert := assert.New(t)
 
-	topRightX := Grid{Cord: 6}
-	topRightY := Grid{Cord: 5}
+	topRightX := Grid{Coord: 6}
+	topRightY := Grid{Coord: 5}
 
 	plat := NewPlateau(topRightX, topRightY)
-	assert.Equal(plat.X.GetMax(), topRightX.Cord)
+	assert.Equal(plat.X.GetMax(), topRightX.Coord)
 }
 
 func TestGrid_GetMin(t *testing.T) {
 	assert := assert.New(t)
 
-	topRightX := Grid{Cord: 5}
-	topRightY := Grid{Cord: 6}
+	topRightX := Grid{Coord: 5}
+	topRightY := Grid{Coord: 6}
 
 	plat := NewPlateau(topRightX, topRightY)
 	assert.Equal(plat.Y.GetMin(), Min)

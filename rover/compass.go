@@ -12,7 +12,7 @@ const West Direction = "W"
 // South ...
 const South Direction = "S"
 
-// Direction is the letter for the postion on a compass
+// Direction is the letter that represents a position on the compass
 type Direction string
 
 // Compass holds the directions represented by strings.
@@ -20,7 +20,7 @@ type Compass struct {
 	Directions map[Direction]bool
 }
 
-// directions is a map Compass points, mapped to bools for safe checking.
+// directions is a map of Compass points, mapped to bools for safe checking.
 var directions = map[Direction]bool{
 	North: true,
 	East:  true,
@@ -28,7 +28,12 @@ var directions = map[Direction]bool{
 	South: true,
 }
 
-// GetCompass returns the compass.
+// GetCompass returns the Compass.
 func GetCompass() Compass {
 	return Compass{Directions: directions}
+}
+
+// StrToDirection takes a string and returns a Direction type.
+func StrToDirection(str string) Direction {
+	return Direction(str)
 }
