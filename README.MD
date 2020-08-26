@@ -1,52 +1,55 @@
-# Mars Rover Challenge
-Go implementation to operate a squad of mars rovers on a plateau.
+# Mars Rover Mission Command
+
 
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Customise](#customise)
+    * [Tests](#tests)
+    * [Inputs](#inputs)
 
 ## General info
-This project has test files coverage which can be used to better understand how to interact with the packages.
-To run tests  
-```
-$ go test ./... -v
-```
+This is a Golang (Go) implementation to operate a squad of rovers on a plateau on Mars. 
 
 ## Technologies
-Project is created with:
+These are the technologies used to create this project:
 * Go 1.14.7
 * [Testify]: http://github.com/stretchr/testify  
 
 ## Setup
-To run this project, build it locally using go:
+To run this project, build it locally using Go:
 
 ```
 $ go build -o mars-rover 
 
 ```
 
-Once built you can feed it files via the cli as the second arg:
+Once built you can feed it files via the CLI as the second argument:
 ```
 $ ./mars-rover input.txt
 ```
 
-A example test file called input.txt is included. And follows the format of 
+An example test file called input.txt is included and follows the format of: 
 ```
-5 5 -> plataue (x,y)
-1 2 N -> rover starting location and way facing (x, y, "N")
+5 5 -> plateau (x,y)
+1 2 N -> the starting location of the rover and its facing direction (x, y, "N")
 LMLMLMLMM -> commands for the rover | L left, R right, M move
 ```
 
-Extra rover can be added to the input via to the input with just the rover starting and commands. 
+Additional rovers can be added to the file via the input with additional starting locations and commands on subsequent lines: 
 ```
 3 3 E
 MMRMMRMRRM
 ```
-## Customise
+### Tests
+In order to run tests:  
+```
+$ go test ./... -v
+```
 
-The input file can be changed to csv or another seperator file with new lines by changing the main file.
+### Inputs
+
+The input file can be changed to .csv or another seperator file with new lines by changing the `main.go` file.
 
 ```
 21 | lines, err := fileio.ParseFile(r, rune(' '))
