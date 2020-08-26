@@ -16,17 +16,15 @@ const Move Command = "M"
 
 // Controller type
 type Controller struct {
-	rover   Rover
+	rover   *Rover
 	plateau *Plateau
 }
 
 // NewController returns the compass.
-func NewController(r Rover) *Controller {
-	plat := NewPlateau(r.x, r.y)
-
+func NewController(r Rover, p Plateau) *Controller {
 	return &Controller{
-		plateau: plat,
-		rover:   r,
+		plateau: &p,
+		rover:   &r,
 	}
 }
 
@@ -98,21 +96,23 @@ func (c *Controller) Forward() {
 	}
 
 	switch c.rover.direction {
+	// Y along the top
 	case North:
 		if checkPositive(y, maxY) {
 			c.rover.SetY(Grid{y + moveSpace})
 		}
+	case South:
+		if checkNegative(y, minY) {
+			c.rover.SetY(Grid{y - moveSpace})
+		}
+	// X along the bottom
 	case East:
 		if checkPositive(x, maxX) {
 			c.rover.SetX(Grid{x + moveSpace})
 		}
 	case West:
 		if checkNegative(x, minX) {
-			c.rover.SetY(Grid{y - moveSpace})
-		}
-	case South:
-		if checkNegative(x, minY) {
-			c.rover.SetY(Grid{x - moveSpace})
+			c.rover.SetX(Grid{x - moveSpace})
 		}
 	}
 }
