@@ -52,9 +52,9 @@ func (c *Controller) RotateRight() {
 	case East:
 		c.rover.SetDirection(South)
 	case West:
-		c.rover.SetDirection(West)
-	case South:
 		c.rover.SetDirection(North)
+	case South:
+		c.rover.SetDirection(West)
 	}
 }
 
