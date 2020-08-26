@@ -89,7 +89,7 @@ func (c *Controller) Forward() {
 		return true
 	}
 
-	// checkNegative checks the current plus next Coord agasint the maximum Coord
+	// checkNegative checks the current position plus next movement against the maximum Coord
 	checkNegative := func(current, min int) bool {
 		if (current - moveSpace) < min {
 			return false

@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Missing file, < input.txt")
+		fmt.Println("missing file, < input.txt")
 		os.Exit(1)
 	}
 

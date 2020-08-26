@@ -6,13 +6,13 @@ import (
 	"strconv"
 )
 
-// Start takes the command lines and inputs them into the rover controllers
+// Start takes the command lines and inputs them into the rover Controllers.
 func Start(lines [][]string) {
 	if len(lines) < 3 {
 		return
 	}
 
-	// first line of input example: (5, 5)
+	// first line to build the plateau, example: (5, 5)
 	var plataue = lines[0]
 	x := convertToInt(plataue[0])
 	y := convertToInt(plataue[1])
@@ -20,12 +20,12 @@ func Start(lines [][]string) {
 	squad := rover.SetupMission(x, y)
 
 	remainingLines := lines[1:]
-	// check if the rest of the array is rover and command lines
+	// check if the rest of the array are rover position and command lines
 	if len(remainingLines)%2 != 0 {
 		return
 	}
 
-	// second and third line example: (1 2 N) (LMLMLMLMM)...
+	// second and third line, example: (1 2 N) (LMLMLMLMM)...
 	for i := 0; i < len(remainingLines); i += 2 {
 		con, err := makeRoverAndMove(squad, remainingLines[i], remainingLines[i+1])
 		if err != nil {

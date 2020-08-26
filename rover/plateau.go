@@ -1,19 +1,19 @@
 package rover
 
-// Min is the Coord for the left side of the max
+// Min is the Coord for the leftmost side of the plateau
 const Min = 0
 
-// Plateau is the area repersented by a grid the rover can see.
+// Plateau is the area represented by a grid that the rover is able to see.
 type Plateau struct {
 	X, Y Grid
 }
 
-// Grid is the singular sqaure of the grid
+// Grid is the singular square of the grid.
 type Grid struct {
 	Coord int
 }
 
-// NewPlateau initiailses Plateau using the top right co-ordinates.
+// NewPlateau initiailses Plateau using the upper rightmost co-ordinates.
 func NewPlateau(x, y Grid) Plateau {
 	return Plateau{
 		X: x,
@@ -21,12 +21,12 @@ func NewPlateau(x, y Grid) Plateau {
 	}
 }
 
-// GetMax returns the maxaium Coord int for X
+// GetMax returns the maximum Coord int for X
 func (p Grid) GetMax() int {
 	return p.Coord
 }
 
-// GetMin returns the maxaium Coord int for Y
+// GetMin returns the minimum Coord int for Y
 func (p Grid) GetMin() int {
 	return Min
 }

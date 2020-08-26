@@ -92,7 +92,7 @@ func TestController_Forward(t *testing.T) {
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
 	cont := NewController(r, &p)
 
-	// testing rover near top right corner of a 5,5 grid
+	// testing rover near top right corner of a 5,5 plateau
 	var testsY = []struct {
 		expected int
 	}{
@@ -127,7 +127,7 @@ func TestController_Forward_Rotate(t *testing.T) {
 	p := Plateau{X: Grid{5}, Y: Grid{5}}
 	cont := NewController(r, &p)
 
-	//Moving different directions - currently north 3,3
+	//Moving different directions - current position 3,3 North
 	var testsRotate = []struct {
 		expected int
 		input    string

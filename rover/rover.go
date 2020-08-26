@@ -2,14 +2,14 @@ package rover
 
 import "fmt"
 
-// Squad holds the controllers for a group of rover.
+// Squad holds the Controllers for a group of rovers.
 type Squad struct {
 	Controllers []*Controller
 	Plataue     Plateau
 }
 
-// SetupMission sets up the controllers and rover for commands.
-// With the parimeter of the plataue
+// SetupMission sets up the Controllers to command the rovers.
+// With the perimeter of the plateau
 func SetupMission(xBoundary, yBoundary int) *Squad {
 	p := NewPlateau(
 		Grid{xBoundary},
@@ -19,7 +19,7 @@ func SetupMission(xBoundary, yBoundary int) *Squad {
 	return &Squad{Plataue: p}
 }
 
-// AddRover takes the starting locations of the rover in x,y and the facing direction.
+// AddRover takes the starting location of the rover in x,y and its facing direction.
 func (s *Squad) AddRover(xLocation, yLocation Grid, direction Direction) (*Controller, error) {
 	if !GetCompass().Directions[direction] {
 		return nil, fmt.Errorf("not a support direction %s", direction)
@@ -40,28 +40,28 @@ func (s *Squad) AddRover(xLocation, yLocation Grid, direction Direction) (*Contr
 	return cont, nil
 }
 
-// Rover holds the current postions and direction of the mars rover.
+// Rover holds the current position and direction of the Mars rover.
 type Rover struct {
 	x, y      Grid
 	direction Direction
 }
 
-// SetupRover initialises the rover
+// SetupRover initialises the rover.
 func SetupRover(x, y Grid, direction Direction) Rover {
 	return Rover{x, y, direction}
 }
 
-// SetX sets the x position
+// SetX sets the x position.
 func (r *Rover) SetX(x Grid) {
 	r.x = x
 }
 
-// SetY sets the Y position
+// SetY sets the Y position.
 func (r *Rover) SetY(y Grid) {
 	r.y = y
 }
 
-// SetDirection sets the direction pointing
+// SetDirection sets the facing direction.
 func (r *Rover) SetDirection(direction Direction) {
 	r.direction = direction
 }
